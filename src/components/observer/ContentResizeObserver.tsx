@@ -83,6 +83,8 @@ const ContentResizeObserver:React.FC<ContentResizeObserverProps> = ({ className 
                         onClick={(e) => {
                             e.preventDefault(); 
                             e.currentTarget.classList.toggle("h-20");
+                            // console.log(e.currentTarget.classList)
+                            // e.currentTarget.classList.toggle("h-20");
                             // elementRef.current.classList.toggle("h-[450px]")
                         }} 
                     />
