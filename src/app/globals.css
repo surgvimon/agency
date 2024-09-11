@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "styles/base/variables";
+@import "styles/base/baseline";
+
+@import "styles/modules/happy-content";
+@import "styles/modules/happy-header";
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -14,14 +16,5 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
+@layer utilities { }
+@layer components { }

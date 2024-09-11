@@ -9,6 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "mint": "#5ae8d5",
+        "chocolate": "#573e31",
+        "raspberry": "#f2308e",
+        "vanilla": "#faf2c8",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

@@ -1,0 +1,44 @@
+
+.section__img,
+.section__img-col {
+    @apply relative min-h-[250px];
+}
+
+[data-theme="raspberry"]  {
+	--headerText: var(--raspberry);
+	--headerBg: var(--vanilla);
+}
+
+[data-theme="mint"] {
+	--headerText: var(--mint);
+	--headerBg: var(--chocolate);
+}
+
+[data-theme="chocolate"]  {
+	--headerText: var(--chocolate);
+	--headerBg: var(--vanilla);
+}
+
+
+/* --Section colors-- */
+
+[data-section="raspberry"] {
+	background-color: var(--raspberry);
+	color: var(--vanilla);
+}
+
+[data-section="mint"]  {
+	background-color: var(--mint);
+	color: var(--chocolate);
+}
+
+[data-section="vanilla"] {
+	background-color: var(--vanilla);
+	color: var(--chocolate);
+}
+
+[data-section="chocolate"] {
+	background-color: var(--chocolate);
+	color: var(--vanilla);
+}
+/* ----- */

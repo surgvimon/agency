@@ -1,0 +1,78 @@
+
+/* --Layout stuff-- */
+.section__img {
+	max-width: 12rem;
+	margin: 0 auto;
+}
+
+@media (min-width: 40em) {
+	.section__img {
+		max-width: none;
+	}
+}
+
+section:last-child .section__img {
+	max-width: 10rem;
+}
+
+
+@media (min-width: 40rem) {
+	.grid {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr 2fr;
+		gap: 3rem;
+	}
+}
+
+/* --Secton specific styles, not related to demo-- */
+.section__link {
+	display: inline-block;
+	background: var(--chocolate);
+	padding: 1rem 1.5rem;
+	color: var(--vanilla);
+	border-radius: 0.5rem;
+	font-weight: 700;
+	margin-top: 1.5rem;
+}
+/* ----- */
+
+/* --Section colors-- */
+[data-section="raspberry"] {
+	background-color: var(--raspberry);
+	color: var(--vanilla);
+}
+
+[data-section="mint"]  {
+	background-color: var(--mint);
+	color: var(--chocolate);
+}
+
+[data-section="vanilla"] {
+	background-color: var(--vanilla);
+	color: var(--chocolate);
+}
+
+[data-section="chocolate"] {
+	background-color: var(--chocolate);
+	color: var(--vanilla);
+}
+/* ----- */
+
+/* --Setting the custom properties for header colors-- */
+[data-theme="raspberry"]  {
+	--headerText: var(--raspberry);
+	--headerBg: var(--vanilla);
+}
+
+[data-theme="mint"] {
+	--headerText: var(--mint);
+	--headerBg: var(--chocolate);
+}
+
+[data-theme="chocolate"]  {
+	--headerText: var(--chocolate);
+	--headerBg: var(--vanilla);
+}
+/* ----- */
+

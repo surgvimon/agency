@@ -1,0 +1,14 @@
+:root {
+
+	--headerText: theme("colors.vanilla");
+	--headerBg: theme("colors.raspberry");
+
+	--background: #ffffff;
+	--foreground: #171717;
+
+}
+
+/* --Reset and boilerplate stuff-- */
+* {
+	box-sizing: border-box;
+}
