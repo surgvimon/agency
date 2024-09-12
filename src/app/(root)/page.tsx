@@ -42,7 +42,6 @@ export default function Home() {
       if (direction === 'up' && entry.isIntersecting) {
           return true
       }
-      
       return false
     }
 

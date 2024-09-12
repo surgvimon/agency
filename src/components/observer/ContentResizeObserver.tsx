@@ -79,7 +79,7 @@ const ContentResizeObserver:React.FC<ContentResizeObserverProps> = ({ className 
                 <div ref={elementRef} className="relative w-full overflow-hidden bg-gray-100">
                     <p  className="intro bg-red-100 p-8 border-dashed rounded-md">{description}</p>
                     <div 
-                        className="mx-auto my-8 w-20 p-5 bg-orange-200 cursor-pointer transition-height duration-500 ease-in-out h-8" 
+                        className="mx-auto my-8 w-20 p-5 bg-orange-200 cursor-pointer transition-all duration-500 ease-in-out h-8 " 
                         onClick={(e) => {
                             e.preventDefault(); 
                             e.currentTarget.classList.toggle("h-20");
