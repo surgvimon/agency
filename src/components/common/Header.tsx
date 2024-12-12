@@ -1,9 +1,14 @@
 import React from 'react'
+import { Navbar } from '@/components/common'
+import { cn } from '@/utils/clsx';
 
-const Header = () => {
+interface HeaderProps {
+  className?: string;
+}
+const Header:React.FC<HeaderProps> = ({ className }) => {
   return (
-    <header className='w-full py-8 bg-red-200 sticky top-0 z-10'>
-        header
+    <header className={cn(`bg-gray-900/80 ` , className)}>
+        <Navbar />
     </header>
 )
 }

@@ -1,14 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "styles/base/variables";
-@import "styles/base/baseline";
-
-@import "styles/modules/happy-content";
-@import "styles/modules/happy-header";
-
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -16,5 +8,16 @@
   }
 }
 
-@layer utilities { }
-@layer components { }
+@layer utilities {
+}
+@layer components {
+}
+
+@import "styles/base/variables";
+@import "styles/base/baseline";
+
+@import "styles/modules/site-header";
+@import "styles/modules/happy-content";
+@import "styles/modules/happy-header";
+@import "styles/modules/main-navigation";
+@import "styles/modules/motion-example";

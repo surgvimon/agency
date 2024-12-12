@@ -1,0 +1,110 @@
+/*
+* <div class="demo"></div>    
+*/
+.demo {
+  display: inline-flex;
+  width: 200px;
+  height: 100px;
+  position: relative;
+  clip-path: inset(0 round 30px 0 30px 0);
+}
+
+.demo::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: -7px;
+  right: -7px;
+  bottom: -7px;
+  border: 8px dashed rgba(0, 0, 255, 0.3);
+  border-radius: 37px 0 37px 0;
+  box-sizing: border-box;
+}
+
+/*
+* End : case stuty     
+*/
+
+/*
+* <div class="outline"></div> 
+*/
+.outline {
+    outline: 48px dashed #d5fb62;
+    outline-offset: -4px;
+    overflow:hidden;
+}
+  
+  /*
+  * End : case stuty     
+  */
+
+  
+/*
+<div class="dashed-border h-14 w-full relative rounded-lg">
+    <div class="w-full h-full rounded-lg bg-page z-10 relative">
+        Content goes here...
+    <div>
+</div>
+*/
+.dashed-border::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 4px);
+    transform: translateY(-50%);
+    background-image: linear-gradient(to right, #333 50%, transparent 50%);
+    background-size: 16px;
+    z-index: 0;
+    border-radius: 0.5rem;
+  }
+  .dashed-border::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    width: calc(100% + 4px);
+    transform: translateX(-50%);
+    background-image: linear-gradient(to bottom, #333 50%, transparent 50%);
+    background-size: 4px 16px;
+    z-index: 1;
+    border-radius: 0.5rem;
+  }
+  
+  /*
+  * End : case stuty     
+  */
+
+  
+/*
+
+<div class="bordered">This is bordered!</div>
+<div class="bordered largeGaps">This is bordered and has larger gaps!</div>
+
+*/
+
+.bordered {
+    display: inline-block;
+    padding: 20px;
+    border: dashed 4px #000;
+    border-style: dashed;
+  
+    border-image-source: url("https://i.sstatic.net/wLdVc.png");
+    border-image-slice: 2;
+    border-image-repeat: round;
+  
+    border-image: url("https://i.sstatic.net/wLdVc.png") 2 round;
+  }
+    
+  .largeGaps {
+    border-image-source: url("https://i.sstatic.net/LKclP.png");
+    margin: 0 20px;
+  }
+  
+  /*
+  * End : case stuty     
+  */
+
+  

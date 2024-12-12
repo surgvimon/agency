@@ -17,6 +17,9 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
     },
+    transitionProperty: {
+      'height': 'height'
+    },
   },
   plugins: [],
 };

@@ -1,0 +1,44 @@
+.main-navigation {
+    @apply pt-[2px];
+
+    @apply md:float-left;
+    @apply md:mr-[20px];
+}
+
+.main-navigation ul {
+    @apply p-0;
+    @apply m-0;
+
+    @apply before:content-[""];
+    @apply before:table;
+    @apply after:content-[""];
+    @apply after:table;
+    @apply after:clear-both;
+
+    @apply md:float-left;
+    @apply md:mr-[20px];
+}
+
+.main-navigation li {
+    @apply list-none;
+
+    @apply md:float-left;
+    @apply md:pl-[20px];
+}
+
+.main-navigation a {
+    @apply block;
+    @apply py-[10px];
+    @apply px-[20px];
+    @apply text-white;
+    @apply no-underline;
+    @apply font-[300];
+
+    @apply md:inline-block;
+    @apply md:p-0;
+}
+
+.main-navigation .current-menu-item a,
+.main-navigation a:hover { 
+    @apply text-red-300;
+}

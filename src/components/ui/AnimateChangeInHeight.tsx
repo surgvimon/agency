@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from '@/helpers/clsx';
+import { cn } from '@/utils/clsx';
 
 interface AnimateChangeInHeightProps {
     expanded?: boolean;

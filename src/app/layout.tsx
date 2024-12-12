@@ -1,12 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { 
-  LayoutProvider 
-} from "@/components/provider";
-import { 
-  Footer, 
-  Header 
-} from "@/components/common";
+import { LayoutProvider } from "@/components/provider";
+import { Footer, Header } from "@/components/common";
 
 export const metadata: Metadata = {
   title: "Agency",
@@ -19,10 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <LayoutProvider>
-        <Header/>
-        {children}
-        <Footer/>
-      </LayoutProvider>
+    <LayoutProvider>
+      {/* <Header/> */}
+      {children}
+      {/* <Footer/> */}
+    </LayoutProvider>
   );
 }

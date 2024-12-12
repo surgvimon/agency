@@ -1,9 +1,112 @@
-import Image from "next/image";
+'use client'
+import React from 'react'
+// import Image from "next/image";
 
 export default function Happy() {
+  const headerRef = React.useRef<HTMLDivElement>(null);
+  const sectionsRef = React.useRef<any[]>([]);
+  const scrollRootRef = React.useRef<HTMLDivElement>(null);
+  const headerLinksRef = React.useRef<HTMLDivElement[]>([]);
+  const [prevYPosition, setPrevYPosition] = React.useState(0);
+  const [direction, setDirection] = React.useState('up');
+
+
+
+  const listLinks = [
+    {href: '#about-us', label: "About us"},
+    {href: '#the-flavours', label: "The flavours"},
+    {href: '#get-in-touch', label: "Get in touch"},
+  ];
+  // const addToRefs = el => {
+  //   if (el && !sectionsRef.current.includes(el)) {
+  //     sectionsRef.current.push(el);
+  //   }
+  //  };
+  
+
+    const getTargetSection = (entry:any) => {
+      const index = sectionsRef.current.findIndex((section:any) => section == entry.target)
+      
+      if (index >= sectionsRef.current.length - 1) {
+        return entry.target
+      } else {
+        return sectionsRef.current[index + 1]
+      }
+    };
+
+    const shouldUpdate = (entry:any) => {
+      if (direction === 'down' && !entry.isIntersecting) {
+          return true
+      }
+
+      if (direction === 'up' && entry.isIntersecting) {
+          return true
+      }
+      return false
+    }
+
+    const updateColors = (target:any) => {
+        const theme = target.dataset.section
+        console.log("theme : ", theme)
+        headerRef.current?.setAttribute('data-theme', theme)
+    }
+
+  const updateMarker = (target:any) => {
+    const id = target.id
+    
+    if (!id) return
+    
+    let link = headerLinksRef.current.find((el:any) => {
+        return el.getAttribute('href') === `#${id}`
+    })
+    
+    link = link || headerLinksRef.current[0]
+    
+    const distanceFromLeft = link.getBoundingClientRect().left
+    
+    headerRef.current?.style.setProperty('--markerWidth', `${link.clientWidth}px`)
+    headerRef.current?.style.setProperty('--markerLeft', `${distanceFromLeft}px`)
+  }
+
+  React.useEffect(() => {
+    // console.log("H : ", headerRef.current?.offsetHeight)
+    // console.log("H : ", sectionsRef.current[1]?.id)
+    
+    // console.log("scroll : ", (Number(scrollRootRef.current?.scrollTop) > prevYPosition))
+
+    const options:any = {
+        root: scrollRootRef,
+        rootMargin: `${Number(headerRef.current?.offsetHeight) * -1}px`,
+        threshold: 0
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {       
+        if (Number(scrollRootRef.current?.scrollTop) > prevYPosition) {
+          setDirection('down')
+        } else {
+          setDirection('up')
+        }
+        setPrevYPosition(Number(scrollRootRef.current?.scrollTop))
+        
+        const target = direction === 'down' ? getTargetSection(entry) : entry.target
+        
+        if (shouldUpdate(entry)) {
+            updateColors(target)
+            updateMarker(target)
+        }
+        
+      }, options)
+    });
+    sectionsRef.current.forEach((section) => {
+        observer.observe(section)
+    })
+
+}, []);
+
     return (
-      <div className="scroller" data-scroller>
-      <header data-header className="happy-header">
+      <div ref={scrollRootRef} className="h-full scroller" data-scroller>
+      <header ref={headerRef} data-header className="happy-header">
         <nav className="header__nav">
           <div className="header__left-content">
             <a className="happy-header__home-link" href="#home">
@@ -14,22 +117,44 @@ export default function Happy() {
             </a>
           </div>
           <ul className="header__list">
-            <li>
-              <a href="#about-us" data-link>About us</a>
-            </li>
-            <li>
-              <a href="#the-flavours" data-link>The flavours</a>
-            </li>
-            <li>
-              <a href="#get-in-touch" data-link>Get in touch</a>
-            </li>
+            {listLinks.map((list:any) => (
+              <li key={list.label}>
+                <a 
+                  ref={(el:any) => {
+                    if (el && !headerLinksRef.current.includes(el)) {
+                      headerLinksRef.current.push(el);
+                    }
+                  }}
+                  href={list.href} 
+                  data-link
+                >
+                  {list.label}
+                </a>
+              </li>
+            ))}
+            {/*             
+              <li>
+                <a href="#the-flavours" data-link>The flavours</a>
+              </li>
+              <li>
+                <a href="#get-in-touch" data-link>Get in touch</a>
+              </li> 
+            */}
           </ul>
         </nav>
       </header>
-
-      <section data-section="raspberry" id="home" className="bg-raspberry text-vanilla min-h-[100vh] relative">
+      <section 
+        ref={el => {
+          if (el && !sectionsRef.current.includes(el)) {
+            sectionsRef.current.push(el);
+          }
+        }} 
+        data-section="raspberry" 
+        id="home" 
+        className="bg-raspberry text-vanilla min-h-[100vh] relative"
+      >
         <div className="max-w-[60rem] py-[5rem] grid grid-cols-2 mx-auto  translate-y-[20%]">
-          <div className="section__img">
+          {/* <div className="section__img">
             <Image
               fill
               sizes='(max-width:768px) 100vw, 50vw'
@@ -37,7 +162,7 @@ export default function Happy() {
               alt="drawing of three smiling ice cream scoops in a bowl"
               className="object-contain pr-8"
             />
-          </div>
+          </div> */}
           <div className="section__content-col">
             <h1>Happy Face Ice Cream Parlour</h1>
             <p>A little ice cream parlour with big dreams.</p>
@@ -48,9 +173,18 @@ export default function Happy() {
         </div>
       </section>
 
-      <section data-section="mint" id="about-us" className="bg-mint text-chocolate min-h-[100vh]">
+      <section 
+        ref={el => {
+          if (el && !sectionsRef.current.includes(el)) {
+            sectionsRef.current.push(el);
+          }
+        }} 
+        data-section="mint" 
+        id="about-us" 
+        className="bg-mint text-chocolate min-h-[100vh]"
+      >
         <div className="max-w-[60rem] py-[5rem] grid grid-cols-2  mx-auto translate-y-[20%]">
-          <div className="section__img-col">
+          {/* <div className="section__img-col">
             <Image
               fill
               sizes='(max-width:768px) 100vw, 50vw'
@@ -58,7 +192,7 @@ export default function Happy() {
               alt="smiling scoop of ice cream with drips"
               className="object-contain pr-8"
             />
-          </div>
+          </div> */}
           <div className="section__content-col">
             <h2>About us</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -66,17 +200,28 @@ export default function Happy() {
         </div>
       </section>
 
-      <section data-section="vanilla" id="the-flavours" className="bg-vanilla text-chocolate min-h-[100vh]">
+      <section 
+        ref={el => {
+          if (el && !sectionsRef.current.includes(el)) {
+            sectionsRef.current.push(el);
+          }
+        }} 
+        data-section="vanilla" 
+        id="the-flavours" 
+        className="bg-vanilla text-chocolate min-h-[100vh]"
+      >
         <div className="max-w-[60rem] py-[5rem] grid grid-cols-2  mx-auto translate-y-[40%]">
+          {/*
           <div className="section__img-col">
-            <Image
+             <Image
               fill
               sizes='(max-width:768px) 100vw, 50vw'
               src={`https://assets.codepen.io/85648/ice-creams-01.svg`}
               alt="three happy ice creams"
               className="object-contain pr-8"
-            />
+            /> 
           </div>
+          */}
           <div className="section__content-col">
             <h2>The flavours</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -84,9 +229,18 @@ export default function Happy() {
         </div>
       </section>
 
-      <section data-section="chocolate" id="get-in-touch" className="bg-chocolate text-vanilla min-h-[100vh]">
+      <section 
+        ref={el => {
+          if (el && !sectionsRef.current.includes(el)) {
+            sectionsRef.current.push(el);
+          }
+        }} 
+        data-section="chocolate" 
+        id="get-in-touch" 
+        className="bg-chocolate text-vanilla min-h-[100vh]"
+      >
         <div className="max-w-[60rem] py-[5rem] grid grid-cols-2  mx-auto translate-y-[50%]">
-          <div className="section__img-col">
+          {/* <div className="section__img-col">
             <Image
               fill
               sizes='(max-width:768px) 100vw, 50vw'
@@ -94,14 +248,15 @@ export default function Happy() {
               alt="spoon with drips"
               className="section__img object-contain pr-8"
             />
-          </div>
+          </div> */}
           <div className="section__content-col">
             <h2 data-section-title>Get in touch</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           </div>
         </div>
-      </section>
-    </div>
+      </section> 
+
+      </div>
     );
   }
   

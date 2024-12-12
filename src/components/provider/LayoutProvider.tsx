@@ -1,4 +1,5 @@
-import { cn } from "@/helpers/clsx";
+import { cn } from "@/utils/clsx";
+
 
 const LayoutProvider = ({
     children,

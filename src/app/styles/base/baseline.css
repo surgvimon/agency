@@ -11,7 +11,9 @@ html,body {
 }
 
 h1, h2 {
-    font-size: 40px !important;
+    @apply sm:text-[42px];
+    @apply lg:text-[40px];
+    @apply  xl:text-5xl;
     font-weight: bold !important;
 }
 p,

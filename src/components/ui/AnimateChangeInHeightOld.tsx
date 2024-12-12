@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { cn } from '@/helpers/clsx'
+import { cn } from '@/utils/clsx';
 
 interface AnimateChangeInHeightOldProps {
     children: React.ReactNode

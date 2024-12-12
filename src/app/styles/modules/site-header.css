@@ -1,0 +1,134 @@
+.site-header {
+    @apply absolute;
+    @apply top-0;
+    @apply left-0;
+    @apply right-0;
+    @apply py-[20px];
+}
+
+.site-header__util {
+    @apply pr-[20px];
+    @apply md:p-0;
+    @apply md:float-right;
+}
+
+.site-header__btn{
+    @apply mr-[20px];
+    @apply md:float-left;
+}
+
+.site-header__menu {
+    @apply invisible;
+    @apply opacity-0;
+    @apply absolute;
+    @apply -top-[20px];
+    @apply left-0;
+    @apply right-0; 
+   
+    @apply pt-[58px];
+    @apply pb-[20px];
+
+    @apply transform;
+    @apply -translate-y-[20%];
+    
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+
+    @apply bg-green-600;
+    /* 
+    @apply transition-opacity;
+    @apply transition-visibility;
+    @apply transition-transform; 
+    @apply duration-300;
+    @apply ease-out;
+    */
+
+    @apply md:visible;
+    @apply md:opacity-100;
+    @apply md:translate-y-0;
+    @apply md:scale-100;
+    @apply md:static;
+    @apply md:bg-transparent;
+    @apply md:float-right;
+    @apply md:pt-0;
+    @apply md:pb-0;
+    @apply md:top-0;
+}
+
+.site-header__menu--active {
+    @apply visible;
+    @apply opacity-100;
+    @apply translate-y-0;
+}
+
+.site-header__menu-trigger {
+    @apply text-white;
+    @apply cursor-pointer;
+    @apply text-[1.2rem];
+    @apply absolute;
+    @apply top-[7px];
+    @apply right-[46px];
+    @apply z-10;
+
+    @apply sm:top-[5px];
+    @apply sm:text-[1.4rem];
+
+    @apply md:hidden;
+
+}
+
+.site-header__search-trigger {
+    @apply cursor-pointer;
+    @apply text-white;
+    @apply text-[1.2rem];
+    @apply absolute;
+    @apply z-10;
+    @apply top-[6px];
+    @apply right-[16px];
+
+    @apply sm:top-[4px];
+    @apply sm:text-[1.4rem];
+
+    @apply md:hidden;
+}
+
+.site-header__menu-trigger {
+    @apply text-white;
+    @apply cursor-pointer;
+    @apply text-[1.2rem];
+    @apply absolute;
+    @apply z-10;
+    @apply top-[7px];
+    @apply right-[46px];
+
+    @apply sm:top-[5px];
+    @apply sm:text-[1.4rem];
+
+    @apply md:hidden;
+}
+
+.site-header__util {
+    @apply pr-[20px];
+
+    @apply md:p-0;
+    @apply md:float-right;
+}
+
+.site-header__btn {
+    @apply mr-[20px];
+    @apply md:float-left;
+
+}
+
+.search-trigger {
+    @apply hidden;
+    @apply text-white;
+    @apply relative;
+    @apply cursor-pointer;
+    @apply top-[1px];
+    @apply ml-[20px];
+
+    @apply md:inline-block;
+    @apply md:top-[6px];
+
+    @apply hover:opacity-65;
+}
